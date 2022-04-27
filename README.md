@@ -689,6 +689,44 @@ while(itr.hasNext()){
 }  
 ```
 
+Java LinkedHashSet class is a Hashtable and Linked list implementation of the Set interface.
+
+* Java LinkedHashSet class contains unique elements only like HashSet.
+* Java LinkedHashSet class provides all optional set operations and permits null elements.
+* Java LinkedHashSet class is non-synchronized.
+* Java LinkedHashSet class maintains insertion order.
+
+The LinkedHashSet class extends the HashSet class, which implements the Set interface. The Set interface inherits Collection and Iterable interfaces in hierarchical order.
+
+
+* LinkedHashSet()	It is used to construct a default LinkedHashSet.
+* LinkedHashSet(Collection c)	It is used to initialize the hash set by using the elements of the collection c.
+* LinkedHashSet(int capacity)	It is used to initialize the capacity of the linked hash set to the given integer value capacity.
+* LinkedHashSet(int capacity, float fillRatio)	It is used to initialize both the capacity and the fill ratio (also called load capacity) of the hash set from its argument.
+
+```java
+LinkedHashSet<String> set = new LinkedHashSet<String>();
+       
+       set.add("One");    
+       set.add("Two");    
+       set.add("Three");   
+       set.add("Four");  
+       set.add("One");    
+       set.add("Five");  
+       
+       System.out.println(set);
+       
+       // returns true  
+        System.out.println(set.remove("One"));  
+        
+         System.out.println(set);
+
+```
+
+
+
+
+
 ### SortedSet Interface
 
 SortedSet is the alternate of Set interface that provides a total ordering on its elements. The elements of the SortedSet are arranged in the increasing (ascending) order. The SortedSet provides the additional methods that inhibit the natural ordering of the elements.
@@ -718,3 +756,44 @@ while(itr.hasNext()){
 ```
 
 
+```java
+TreeSet<String> al = new TreeSet<String>();
+        al.add("Ravi");  
+        al.add("Vijay");  
+        al.add("Ravi");  
+        al.add("Ajay");  
+        System.out.println(al);
+        
+        System.out.println("Traversing element through Iterator in descending order");  
+         Iterator i=al.descendingIterator();  
+         while(i.hasNext())  
+         {  
+             System.out.println(i.next());  
+         }  
+         
+         TreeSet<Integer> set=new TreeSet<Integer>();  
+         set.add(24);  
+         set.add(66);  
+         set.add(12);  
+         set.add(15);  
+         System.out.println("Highest Value: "+set.pollFirst());  
+         System.out.println("Lowest Value: "+set.pollLast());  
+         
+         TreeSet<String> set2=new TreeSet<String>();  
+         set2.add("A");  
+         set2.add("B");  
+         set2.add("C");  
+         set2.add("D");  
+         set2.add("E");  
+         
+        System.out.println("set Value: "+set2);  
+         
+         System.out.println("Reverse Set: "+set2.descendingSet());  
+           
+         System.out.println("Head Set: "+set2.headSet("C", true));  
+          
+         System.out.println("SubSet: "+set2.subSet("A", false, "E", true));  
+           
+         System.out.println("TailSet: "+set2.tailSet("C", false));  
+
+```
