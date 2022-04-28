@@ -1264,3 +1264,341 @@ Have the same methods of Map
 * NavigableMap<K,V> tailMap(K fromKey, boolean inclusive)	It returns key-value pairs whose keys are greater than (or equal to, if inclusive is true) fromKey.
 * K firstKey()	It is used to return the first (lowest) key currently in this sorted map.
 * K lastKey()	It is used to return the last (highest) key currently in the sorted map.
+
+```java
+TreeMap<Integer,String> map=new TreeMap<Integer,String>();    
+    
+     map.put(100,"Amit");    
+     map.put(102,"Ravi");    
+     map.put(101,"Vijay");    
+     map.put(103,"Rahul");    
+     
+     for(Map.Entry m:map.entrySet()){    
+       System.out.println(m.getKey()+" "+m.getValue());    
+      }    
+      
+       map.remove(102);      
+       
+    System.out.println();  
+    
+     for(Map.Entry m:map.entrySet()){    
+       System.out.println(m.getKey()+" "+m.getValue());    
+      }    
+    
+     System.out.println(); 
+     
+      // NavigableMap
+      //Maintains descending order  
+      System.out.println("descendingMap: "+map.descendingMap());  
+      //Returns key-value pairs whose keys are less than or equal to the specified key.  
+      System.out.println("headMap: "+map.headMap(102,true));  
+      //Returns key-value pairs whose keys are greater than or equal to the specified key.  
+      System.out.println("tailMap: "+map.tailMap(102,true));  
+      //Returns key-value pairs exists in between the specified key.  
+      System.out.println("subMap: "+map.subMap(100, false, 102, true));   
+      
+       System.out.println(); 
+       
+      // sorted map
+      //Returns key-value pairs whose keys are less than the specified key.  
+      System.out.println("headMap: "+map.headMap(102));  
+      //Returns key-value pairs whose keys are greater than or equal to the specified key.  
+      System.out.println("tailMap: "+map.tailMap(102));  
+      //Returns key-value pairs exists in between the specified key.  
+      System.out.println("subMap: "+map.subMap(100, 102));    
+```
+
+### Java Hashtable class
+
+Java Hashtable class implements a hashtable, which maps keys to values. It inherits Dictionary class and implements the Map interface.
+
+* A Hashtable is an array of a list. Each list is known as a bucket. The position of the bucket is identified by calling the hashcode() method. A Hashtable contains values based on the key.
+* Java Hashtable class contains unique elements.
+* Java Hashtable class doesn't allow null key or value.
+* Java Hashtable class is synchronized.
+* The initial default capacity of Hashtable class is 11 whereas loadFactor is 0.75.
+
+* Hashtable()	It creates an empty hashtable having the initial default capacity and load factor.
+* Hashtable(int capacity)	It accepts an integer parameter and creates a hash table that contains a specified initial capacity.
+* Hashtable(int capacity, float loadFactor)	It is used to create a hash table having the specified initial capacity and loadFactor.
+* Hashtable(Map<? extends K,? extends V> t)	It creates a new hash table with the same mappings as the given Map.
+
+have same methods as map
+
+* protected void rehash()	It is used to increase the size of the hash table and rehashes all of its keys.
+* String toString()	It returns a string representation of the Hashtable object.
+* Enumeration<K> keys()	It returns an enumeration of the keys in the hashtable.
+* int hashCode()	It returns the hash code value for the Map
+* void forEach(BiConsumer<? super K,? super V> action)	It performs the given action for each entry in the map until all entries have been processed or the action throws an exception.
+* Enumeration elements()	It returns an enumeration of the values in the hash table.
+* Object clone()	It returns a shallow copy of the Hashtable.
+
+```java
+   Hashtable<Integer, String> hm = new Hashtable<Integer, String>();
+    
+     hm.put(100,"Amit");  
+      hm.put(102,"Ravi");  
+      hm.put(101,"Vijay");  
+      hm.put(103,"Rahul");  
+      
+      for(Map.Entry m:hm.entrySet()){  
+       System.out.println(m.getKey()+" "+m.getValue());  
+      }  
+      
+      hm.remove(102);  
+      System.out.println("After remove: "+ hm);  
+      
+      System.out.println(hm.getOrDefault(101, "Not Found"));  
+      ```
+
+
+Difference between HashMap and Hashtable
+
+HashMap and Hashtable both are used to store data in key and value form. Both are using hashing technique to store unique keys.
+
+![](2022-04-28-01-56-11.png)
+
+We can make the HashMap as synchronized by calling this code
+Map m = Collections.synchronizedMap(hashMap);
+
+
+### EnumSet 
+
+Java EnumSet class is the specialized Set implementation for use with enum types. It inherits AbstractSet class and implements the Set interface.
+
+* static <E extends Enum<E>> EnumSet<E> allOf(Class<E> elementType)	It is used to create an enum set containing all of the elements in the specified element type.
+* static <E extends Enum<E>> EnumSet<E> copyOf(Collection<E> c)	It is used to create an enum set initialized from the specified collection.
+* static <E extends Enum<E>> EnumSet<E> noneOf(Class<E> elementType)	It is used to create an empty enum set with the specified element type.
+* static <E extends Enum<E>> EnumSet<E> of(E e)	It is used to create an enum set initially containing the specified element.
+* static <E extends Enum<E>> EnumSet<E> range(E from, E to)	It is used to create an enum set initially containing the specified elements.
+* EnumSet<E> clone()	It is used to return a copy of this set.
+
+```java
+enum days {
+   SUNDAY, MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY, SATURDAY  
+}
+
+public class EnumSetExample  {  
+public static void main(String[] args) {  
+    
+    Set<days> set = EnumSet.of(days.TUESDAY, days.WEDNESDAY);
+    
+    // Traversing elements
+    Iterator<days> iter = set.iterator();
+    while(iter.hasNext()) System.out.println(iter.next());
+
+      Set<days> set1 = EnumSet.allOf(days.class);  
+      System.out.println("Week Days:"+set1);  
+      Set<days> set2 = EnumSet.noneOf(days.class);  
+      System.out.println("Week Days:"+set2);     
+      
+}  
+}  
+```
+
+### EnumMap
+
+Java EnumMap class is the specialized Map implementation for enum keys. It inherits Enum and AbstractMap classes.
+
+* EnumMap(Class<K> keyType)	It is used to create an empty enum map with the specified key type.
+* EnumMap(EnumMap<K,? extends V> m)	It is used to create an enum map with the same key type as the specified enum map.
+* EnumMap(Map<K,? extends V> m)	It is used to create an enum map initialized from the specified map.
+
+* 1	clear()	It is used to clear all the mapping from the map.
+* 2	clone()	It is used to copy the mapped value of one map to another map.
+* 3	containsKey()	It is used to check whether a specified key is present in this map or not.
+* 4	containsValue()	It is used to check whether one or more key is associated with a given value or not.
+* 5	entrySet()	It is used to create a set of elements contained in the EnumMap.
+* 6	equals()	It is used to compare two maps for equality.
+* 7	get()	It is used to get the mapped value of the specified key.
+* 8	hashCode()	It is used to get the hashcode value of the EnumMap.
+* 9	keySet()	It is used to get the set view of the keys contained in the map.
+* 10	size()	It is used to get the size of the EnumMap.
+* 11	Values()	It is used to create a collection view of the values contained in this map.
+* 12	put()	It is used to associate the given value with the given key in this EnumMap.
+* 13	putAll()	It is used to copy all the mappings from one EnumMap to a new EnumMap.
+* 14	remove()	It is used to remove the mapping for the given key from EnumMap if the given key is present.
+
+```java
+import java.util.*;  
+public class EnumMapExample {  
+   // create an enum  
+   public enum Days {  
+   Monday, Tuesday, Wednesday, Thursday  
+   };  
+   public static void main(String[] args) {  
+   //create and populate enum map  
+   EnumMap<Days, String> map = new EnumMap<Days, String>(Days.class);  
+   map.put(Days.Monday, "1");  
+   map.put(Days.Tuesday, "2");  
+   map.put(Days.Wednesday, "3");  
+   map.put(Days.Thursday, "4");  
+   // print the map  
+   for(Map.Entry m:map.entrySet()){    
+       System.out.println(m.getKey()+" "+m.getValue());    
+      }   
+   }  
+}  
+```
+
+### Java Collections class
+
+Java collection class is used exclusively with static methods that operate on or return collections. It inherits Object class.
+
+* Java Collection class supports the polymorphic algorithms that operate on collections.
+* Java Collection class throws a NullPointerException if the collections or class objects provided to them are null.
+
+* 1)	static <T> boolean	addAll()	It is used to adds all of the specified elements to the specified collection.
+* 2)	static <T> Queue<T>	asLifoQueue()	It returns a view of a Deque as a Last-in-first-out (LIFO) Queue.
+* 3)	static <T> int	binarySearch()	It searches the list for the specified object and returns their position in a sorted list.
+* 4)	static <E> Collection<E>	checkedCollection()	It is used to returns a dynamically typesafe view of the specified collection.
+* 5)	static <E> List<E>	checkedList()	It is used to returns a dynamically typesafe view of the specified list.
+* 6)	static <K,V> Map<K,V>	checkedMap()	It is used to returns a dynamically typesafe view of the specified map.
+* 7)	static <K,V> NavigableMap<K,V>	checkedNavigableMap()	It is used to returns a dynamically typesafe view of the specified navigable map.
+* 8)	static <E> NavigableSet<E>	checkedNavigableSet()	It is used to returns a dynamically typesafe view of the specified navigable set.
+* 9)	static <E> Queue<E>	checkedQueue()	It is used to returns a dynamically typesafe view of the specified queue.
+* 10)	static <E> Set<E>	checkedSet()	It is used to returns a dynamically typesafe view of the specified set.
+* 11)	static <K,V> SortedMap<K,V>	checkedSortedMap()	It is used to returns a dynamically typesafe view of the specified sorted map.
+* 12)	static <E> SortedSet<E>	checkedSortedSet()	It is used to returns a dynamically typesafe view of the specified sorted set.
+* 13)	static <T> void	copy()	It is used to copy all the elements from one list into another list.
+* 14)	static boolean	disjoint()	It returns true if the two specified collections have no elements in common.
+* 15)	static <T> Enumeration<T>	emptyEnumeration()	It is used to get an enumeration that has no elements.
+* 16)	static <T> Iterator<T>	emptyIterator()	It is used to get an Iterator that has no elements.
+* 17)	static <T> List<T>	emptyList()	It is used to get a List that has no elements.
+* 18)	static <T> ListIterator<T>	emptyListIterator()	It is used to get a List Iterator that has no elements.
+* 19)	static <K,V> Map<K,V>	emptyMap()	It returns an empty map which is immutable.
+* 20)	static <K,V> NavigableMap<K,V>	emptyNavigableMap()	It returns an empty navigable map which is immutable.
+* 21)	static <E> NavigableSet<E>	emptyNavigableSet()	It is used to get an empty navigable set which is immutable in nature.
+* 22)	static <T> Set<T>	emptySet()	It is used to get the set that has no elements.
+* 23)	static <K,V> SortedMap<K,V>	emptySortedMap()	It returns an empty sorted map which is immutable.
+* 24)	static <E> SortedSet<E>	emptySortedSet()	It is used to get the sorted set that has no elements.
+* 25)	static <T> Enumeration<T>	enumeration()	It is used to get the enumeration over the specified collection.
+* 26)	static <T> void	fill()	It is used to replace all of the elements of the specified list with the specified elements.
+* 27)	static int	frequency()	It is used to get the number of elements in the specified collection equal to the specified object.
+* 28)	static int	indexOfSubList()	It is used to get the starting position of the first occurrence of the specified target list within the specified source list. It returns -1 if there is no such occurrence in the specified list.
+* 29)	static int	lastIndexOfSubList()	It is used to get the starting position of the last occurrence of the specified target list within the specified source list. It returns -1 if there is no such occurrence in the specified list.
+* 30)	static <T> ArrayList<T>	list()	It is used to get an array list containing the elements returned by the specified enumeration in the order in which they are returned by the enumeration.
+* 31)	static <T extends Object & Comparable<? super T>> T	max()	It is used to get the maximum value of the given collection, according to the natural ordering of its elements.
+* 32)	static <T extends Object & Comparable<? super T>> T	min()	It is used to get the minimum value of the given collection, according to the natural ordering of its elements.
+* 33)	static <T> List<T>	nCopies()	It is used to get an immutable list consisting of n copies of the specified object.
+* 34)	static <E> Set<E>	newSetFromMap()	It is used to return a set backed by the specified map.
+* 35)	static <T> boolean	replaceAll()	It is used to replace all occurrences of one specified value in a list with the other specified value.
+* 36)	static void	reverse()	It is used to reverse the order of the elements in the specified list.
+* 37)	static <T> Comparator<T>	reverseOrder()	It is used to get the comparator that imposes the reverse of the natural ordering on a collection of objects which implement the Comparable interface.
+* 38)	static void	rotate()	It is used to rotate the elements in the specified list by a given distance.
+* 39)	static void	shuffle()	It is used to randomly reorders the specified list elements using a default randomness.
+* 40)	static <T> Set<T>	singleton()	It is used to get an immutable set which contains only the specified object.
+* 41)	static <T> List<T>	singletonList()	It is used to get an immutable list which contains only the specified object.
+* 42)	static <K,V> Map<K,V>	singletonMap()	It is used to get an immutable map, mapping only the specified key to the specified value.
+* 43)	static <T extends Comparable<? super T>>void	sort()	It is used to sort the elements presents in the specified list of collection in ascending order.
+* 44)	static void	swap()	It is used to swap the elements at the specified positions in the specified list.
+* 45)	static <T> Collection<T>	synchronizedCollection()	It is used to get a synchronized (thread-safe) collection backed by the specified collection.
+* 46)	static <T> List<T>	synchronizedList()	It is used to get a synchronized (thread-safe) collection backed by the specified list.
+* 47)	static <K,V> Map<K,V>	synchronizedMap()	It is used to get a synchronized (thread-safe) map backed by the specified map.
+* 48)	static <K,V> NavigableMap<K,V>	synchronizedNavigableMap()	It is used to get a synchronized (thread-safe) navigable map backed by the specified navigable map.
+* 49)	static <T> NavigableSet<T>	synchronizedNavigableSet()	It is used to get a synchronized (thread-safe) navigable set backed by the specified navigable set.
+* 50)	static <T> Set<T>	synchronizedSet()	It is used to get a synchronized (thread-safe) set backed by the specified set.
+* 51)	static <K,V> SortedMap<K,V>	synchronizedSortedMap()	It is used to get a synchronized (thread-safe) sorted map backed by the specified sorted map.
+* 52)	static <T> SortedSet<T>	synchronizedSortedSet()	It is used to get a synchronized (thread-safe) sorted set backed by the specified sorted set.
+* 53)	static <T> Collection<T>	unmodifiableCollection()	It is used to get an unmodifiable view of the specified collection.
+* 54)	static <T> List<T>	unmodifiableList()	It is used to get an unmodifiable view of the specified list.
+* 55)	static <K,V> Map<K,V>	unmodifiableMap()	It is used to get an unmodifiable view of the specified map.
+* 56)	static <K,V> NavigableMap<K,V>	unmodifiableNavigableMap()	It is used to get an unmodifiable view of the specified navigable map.
+* 57)	static <T> NavigableSet<T>	unmodifiableNavigableSet()	It is used to get an unmodifiable view of the specified navigable set.
+* 58)	static <T> Set<T>	unmodifiableSet()	It is used to get an unmodifiable view of the specified set.
+* 59)	static <K,V> SortedMap<K,V>	unmodifiableSortedMap()	It is used to get an unmodifiable view of the specified sorted map.
+* 60	static <T> SortedSet<T>	unmodifiableSortedSet()	It is used to get an unmodifiable view of the specified sorted set.
+
+```java
+      List<String> list = new ArrayList<String>();  
+        list.add("C");  
+        list.add("Core Java");  
+        list.add("Advance Java");  
+        System.out.println("Initial collection value:"+list);  
+        Collections.addAll(list, "Servlet","JSP");  
+        System.out.println("After adding elements collection value:"+list);  
+        String[] strArr = {"C#", ".Net"};  
+        Collections.addAll(list, strArr);  
+        System.out.println("After adding array collection value:"+list);   
+        
+           List<Integer> list2 = new ArrayList<Integer>();  
+        list2.add(46);  
+        list2.add(67);  
+        list2.add(24);  
+        list2.add(16);  
+        list2.add(8);  
+        list2.add(12);  
+        System.out.println("Value of maximum element from the collection: "+Collections.max(list2));  
+        System.out.println("Value of minimum element from the collection: "+Collections.min(list2));  
+
+        ```
+
+
+Sorting in Collection
+
+We can sort the elements of:
+
+String objects
+Wrapper class objects
+User-defined class objects
+
+Collections class provides static methods for sorting the elements of a collection. If collection elements are of a Set type, we can use TreeSet. However, we cannot sort the elements of List
+
+public void sort(List list): is used to sort the elements of List. List elements must be of the Comparable type.
+
+```java
+import java.util.*;  
+
+
+class Student implements Comparable<Student> {
+    public String name;
+    public Student(String name) {  
+        this.name = name;  
+    }
+    
+    public int compareTo(Student person) {
+        return name.compareTo(person.name);
+    }
+    
+}
+
+public class CollectionsExample {  
+    public static void main(String a[]){    
+ 
+        ArrayList<String> al=new ArrayList<String>();  
+        al.add("Viru");  
+        al.add("Saurav");  
+        al.add("Mukesh");  
+        al.add("Tahir");  
+          
+        Collections.sort(al);  
+        Iterator itr=al.iterator();  
+        while(itr.hasNext()){  
+            System.out.println(itr.next());  
+        }
+        
+        Collections.sort(al,Collections.reverseOrder());  
+        System.out.println(al);
+        
+        ArrayList<Integer> al2 = new ArrayList<Integer>();  
+        al2.add(Integer.valueOf(201));  
+        al2.add(Integer.valueOf(101));  
+        al2.add(230);//internally will be converted into objects as Integer.valueOf(230)  
+          
+        Collections.sort(al2);  
+        System.out.println(al2);
+        
+        ArrayList<Student> al3=new ArrayList<Student>();  
+      al3.add(new Student("Viru"));  
+      al3.add(new Student("Saurav"));  
+      al3.add(new Student("Mukesh"));  
+      al3.add(new Student("Tahir"));  
+      
+      Collections.sort(al3);  
+        for (Student s : al3) {  
+          System.out.println(s.name);  
+        }  
+        
+    }
+}
+```
