@@ -1135,3 +1135,132 @@ HashSet contains only values whereas HashMap contains an entry(key and value).
     map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).forEach(System.out::println);   
 ```
 
+What is Hashing
+
+It is the process of converting an object into an integer value. The integer value helps in indexing and faster searches.
+
+HashMap is a part of the Java collection framework. It uses a technique called Hashing. It implements the map interface. It stores the data in the pair of Key and Value. HashMap contains an array of the nodes, and the node is represented as a class. It uses an array and LinkedList data structure internally for storing Key and Value
+
+* equals(): It checks the equality of two objects. It compares the Key, whether they are equal or not. It is a method of the Object class. It can be overridden. If you override the equals() method, then it is mandatory to override the hashCode() method.
+* hashCode(): This is the method of the object class. It returns the memory reference of the object in integer form. The value received from the method is used as the bucket number. The bucket number is the address of the element inside the map. Hash code of null Key is 0.
+* Buckets: Array of the node is called buckets. Each node has a data structure like a LinkedList. More than one node can share the same bucket. It may be different in capacity.
+
+![](2022-04-28-01-16-11.png)
+
+The default size of HashMap is 16 (0 to 15).
+
+Calculating Index
+
+Index minimizes the size of the array. The Formula for calculating the index is:
+
+* Index = hashcode(Key) & (n-1)  
+
+Where n is the size of the array. Hence the index value for "Aman" is:
+
+* Index = 2657860 & (16-1) = 4  
+
+![](2022-04-28-01-18-04.png)
+
+Hash Collision
+This is the case when the calculated index value is the same for two or more Keys. Let's calculate the hash code for another Key "Sunny." Suppose the hash code for "Sunny" is 63281940. To store the Key in the memory, we have to calculate index by using the index formula.
+
+* Index= 63281940 & (16-1) = 4  
+
+The value 4 is the computed index value where the Key will be stored in HashMap. In this case, equals() method check that both Keys are equal or not. If Keys are same, replace the value with the current value. Otherwise, connect this node object to the existing node object through the LinkedList. Hence both Keys will be stored at index 4.
+
+![](2022-04-28-01-19-14.png)
+
+get() method in HashMap
+get() method is used to get the value by its Key. It will not fetch the value if you don't know the Key. When get(K Key) method is called, it calculates the hash code of the Key.
+
+Suppose we have to fetch the Key "Aman." The following method will be called.
+
+* map.get(new Key("Aman"));  
+
+It generates the hash code as 2657860. Now calculate the index value of 2657860 by using index formula. The index value will be 4, as we have calculated above. get() method search for the index value 4. It compares the first element Key with the given Key. If both keys are equal, then it returns the value else check for the next element in the node if it exists. In our scenario, it is found as the first element of the node and 
+return the value 19.
+
+
+#### LinkedHashMap
+
+Java LinkedHashMap class is Hashtable and Linked list implementation of the Map interface, with predictable iteration order. It inherits HashMap class and implements the Map interface.
+
+* Java LinkedHashMap contains values based on the key.
+* Java LinkedHashMap contains unique elements.
+* Java LinkedHashMap may have one null key and multiple null values.
+* Java LinkedHashMap is non synchronized.
+* Java LinkedHashMap maintains insertion order.
+* The initial default capacity of Java HashMap class is 16 with a load factor of 0.75.
+
+* LinkedHashMap()	It is used to construct a default LinkedHashMap.
+* LinkedHashMap(int capacity)	It is used to initialize a LinkedHashMap with the given capacity.
+* LinkedHashMap(int capacity, float loadFactor)	It is used to initialize both the capacity and the load factor.
+* LinkedHashMap(int capacity, float loadFactor, boolean accessOrder)	It is used to initialize both the capacity and the load factor with specified ordering mode.
+* LinkedHashMap(Map<? extends K,? extends V> m)	It is used to initialize the LinkedHashMap with the elements from the given Map class m.
+
+Have the same methods of Map
+
+* protected boolean removeEldestEntry(Map.Entry<K,V> eldest)	It returns true on removing its eldest entry.
+
+```java
+ LinkedHashMap<Integer, String> hm = new LinkedHashMap<Integer, String>();
+   
+    hm.put(100,"Amit");  
+    hm.put(101,"Vijay");  
+    hm.put(102,"Rahul");  
+    
+    for(Map.Entry m:hm.entrySet()){  
+       System.out.println(m.getKey()+" "+m.getValue());  
+      }  
+      
+      
+    //Fetching key  
+       System.out.println("Keys: "+hm.keySet());  
+       //Fetching value  
+       System.out.println("Values: "+hm.values());  
+       //Fetching key-value pair  
+       System.out.println("Key-Value pairs: "+hm.entrySet());  
+
+```
+
+#### TreeMap
+
+Java TreeMap class is a red-black tree based implementation. It provides an efficient means of storing key-value pairs in sorted order.
+
+* Java TreeMap contains values based on the key. It implements the NavigableMap interface and extends AbstractMap class.
+* Java TreeMap contains only unique elements.
+* Java TreeMap cannot have a null key but can have multiple null values.
+* Java TreeMap is non synchronized.
+* Java TreeMap maintains ascending order.
+
+
+* TreeMap()	It is used to construct an empty tree map that will be sorted using the natural order of its key.
+* TreeMap(Comparator<? super K> comparator)	It is used to construct an empty tree-based map that will be sorted using the comparator comp.
+* TreeMap(Map<? extends K,? extends V> m)	It is used to initialize a treemap with the entries from m, which will be sorted using the natural order of the keys.
+* TreeMap(SortedMap<K,? extends V> m)	It is used to initialize a treemap with the entries from the SortedMap sm, which will be sorted in the same order as sm.
+
+Have the same methods of Map
+
+* Map.Entry<K,V> ceilingEntry(K key)	It returns the key-value pair having the least key, greater than or equal to the specified key, or null if there is no such key.
+* K ceilingKey(K key)	It returns the least key, greater than the specified key or null if there is no such key.
+* Comparator<? super K> comparator()	It returns the comparator that arranges the key in order, or null if the map uses the natural ordering.
+* NavigableSet<K> descendingKeySet()	It returns a reverse order NavigableSet view of the keys contained in the map.
+* NavigableMap<K,V> descendingMap()	It returns the specified key-value pairs in descending order.
+* Map.Entry firstEntry()	It returns the key-value pair having the least key.
+* Map.Entry<K,V> floorEntry(K key)	It returns the greatest key, less than or equal to the specified key, or null if there is no such key.
+* SortedMap<K,V> headMap(K toKey)	It returns the key-value pairs whose keys are strictly less than toKey.
+* NavigableMap<K,V> headMap(K toKey, boolean inclusive)	It returns the key-value pairs whose keys are less than (or equal to if inclusive is true) toKey.
+* Map.Entry<K,V> higherEntry(K key)	It returns the least key strictly greater than the given key, or null if there is no such key.
+* K higherKey(K key)	It is used to return true if this map contains a mapping for the specified key.
+* Map.Entry<K,V> lastEntry()	It returns the key-value pair having the greatest key, or null if there is no such key.
+* Map.Entry<K,V> lowerEntry(K key)	It returns a key-value mapping associated with the greatest key strictly less than the given key, or null if there is no such key.
+* K lowerKey(K key)	It returns the greatest key strictly less than the given key, or null if there is no such key.
+* NavigableSet<K> navigableKeySet()	It returns a NavigableSet view of the keys contained in this map.
+* Map.Entry<K,V> pollFirstEntry()	It removes and returns a key-value mapping associated with the least key in this map, or null if the map is empty.
+* Map.Entry<K,V> pollLastEntry()	It removes and returns a key-value mapping associated with the greatest key in this map, or null if the map is empty.
+* NavigableMap<K,V> subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive)	It returns key-value pairs whose keys range from fromKey to toKey.
+* SortedMap<K,V> subMap(K fromKey, K toKey)	It returns key-value pairs whose keys range from fromKey, inclusive, to toKey, exclusive.
+* SortedMap<K,V> tailMap(K fromKey)	It returns key-value pairs whose keys are greater than or equal to fromKey.
+* NavigableMap<K,V> tailMap(K fromKey, boolean inclusive)	It returns key-value pairs whose keys are greater than (or equal to, if inclusive is true) fromKey.
+* K firstKey()	It is used to return the first (lowest) key currently in this sorted map.
+* K lastKey()	It is used to return the last (highest) key currently in the sorted map.
