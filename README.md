@@ -1898,4 +1898,117 @@ public class MyClass {
 
 ```
 
+Difference between Comparable and Comparator
 
+Comparable and Comparator both are interfaces and can be used to sort collection elements.
+
+![image](https://user-images.githubusercontent.com/25869911/166124787-0c282feb-756a-43ff-829d-4ec03ca66004.png)
+
+
+
+### Properties in java
+
+The properties object contains key and value pair both as a string. The java.util.Properties class is the subclass of Hashtable.
+
+It can be used to get property value based on the property key. The Properties class provides methods to get data from the properties file and store data into the properties file. Moreover, it can be used to get the properties of a system.
+
+Recompilation is not required if the information is changed from a properties file: If any information is changed from the properties file, you don't need to recompile the java class. It is used to store information which is to be changed frequently.
+
+* Properties()	It creates an empty property list with no default values.
+* Properties(Properties defaults)	It creates an empty property list with the specified defaults.
+
+
+* public void load(Reader r)	It loads data from the Reader object.
+* public void load(InputStream is)	It loads data from the InputStream object
+* public void loadFromXML(InputStream in)	It is used to load all of the properties represented by the XML document on the specified input stream into this properties table.
+* public String getProperty(String key)	It returns value based on the key.
+* public String getProperty(String key, String defaultValue)	It searches for the property with the specified key.
+* public void setProperty(String key, String value)	It calls the put method of Hashtable.
+* public void list(PrintStream out)	It is used to print the property list out to the specified output stream.
+* public void list(PrintWriter out))	It is used to print the property list out to the specified output stream.
+* public Enumeration<?> propertyNames())	It returns an enumeration of all the keys from the property list.
+* public Set<String> stringPropertyNames()	It returns a set of keys in from property list where the key and its corresponding value are strings.
+* public void store(Writer w, String comment)	It writes the properties in the writer object.
+* public void store(OutputStream os, String comment)	It writes the properties in the OutputStream object.
+* public void storeToXML(OutputStream os, String comment)	It writes the properties in the writer object for generating XML document.
+* public void storeToXML(Writer w, String comment, String encoding)	It writes the properties in the writer object for generating XML document with the specified encoding.
+   
+   
+ file -> db.properties
+ 
+```file
+user=system  
+password=oracle  
+```
+   
+```java
+import java.util.*;  
+import java.io.*;  
+public class Test {  
+public static void main(String[] args)throws Exception{  
+    FileReader reader=new FileReader("db.properties");  
+      
+    Properties p=new Properties();  
+    p.load(reader);  
+      
+    System.out.println(p.getProperty("user"));  
+    System.out.println(p.getProperty("password"));  
+}  
+}  
+```
+   
+you can use FileReader class to read the db.proerpties, create Properties and use load method to load the FileReader class
+use getProperty method to get the Specific property.
+   
+By System.getProperties() method we can get all the properties of the system. Let's create the class that gets information from the system properties.
+
+Use Set the method of entrySet(). you can interate, using Map.Entry mehhods like getKey() and getValue(). to print out the system properties
+   
+```java
+import java.util.*;  
+import java.io.*;  
+public class Test {  
+public static void main(String[] args)throws Exception{  
+  
+Properties p=System.getProperties();  
+Set set=p.entrySet();  
+  
+Iterator itr=set.iterator();  
+while(itr.hasNext()){  
+Map.Entry entry=(Map.Entry)itr.next();  
+System.out.println(entry.getKey()+" = "+entry.getValue());  
+}  
+  
+}  
+}  
+```
+
+```java
+import java.util.*;  
+import java.io.*;  
+public class Test {  
+public static void main(String[] args)throws Exception{  
+  
+Properties p=new Properties();  
+p.setProperty("name","Sonoo Jaiswal");  
+p.setProperty("email","sonoojaiswal@javatpoint.com");  
+  
+p.store(new FileWriter("info.properties"),"Javatpoint Properties Example");  
+  
+}  
+}  
+```
+   
+you can set propertoties creating Properties, use setProperty method. use store method to using File Writer save the properties to a file.
+   
+info.properties
+```
+#Javatpoint Properties Example  
+#Thu Oct 03 22:35:53 IST 2013  
+email=sonoojaiswal@javatpoint.com  
+name=Sonoo Jaiswal  
+```
+   
+
+   
+   
