@@ -948,12 +948,76 @@ Deque d = new ArrayDeque();
 Java Deque Interface is a linear collection that supports element insertion and removal at both ends. Deque is an acronym for "double ended queue".
 
 
-* boolean add(object)	It is used to insert the specified element into this deque and return true upon success.
-* boolean offer(object)	It is used to insert the specified element into this deque.
-* Object remove()	It is used to retrieves and removes the head of this deque.
-* Object poll()	It is used to retrieves and removes the head of this deque, or returns null if this deque is empty.
-* Object element()	It is used to retrieves, but does not remove, the head of this deque.
-* Object peek()	It is used to retrieves, but does not remove, the head of this deque, or returns null if this deque is empty.
+* add(E e)	This method is used to insert a specified element into the queue represented by the deque
+* addAll(Collection<? Extends E>c)	Adds all the elements in the specified collection at the end of the deque.
+* addFirst(E e)	Inserts the specified element at the front of the deque.
+* addLast(E e)	Inserts the specified element at the end of the deque.
+* contains(object o)	Returns true if the deque contains the specified element.
+* descendingIterator()	Returns an iterator over the elements in reverse sequential order.
+* element()	Retrieves the head of the queue represented by the deque.
+* getFirst()	Retrieves but does not remove the first element of the deque.
+* getLast()	Retrieves but does not remove the last element of the deque.
+* iterator()	Returns an iterator over the element in the deque in a proper sequence.
+* offer(E e)	Inserts the specified element into the deque, returning true upon success and false if no space is available.
+* offerFirst()	Inserts the specified element at the front of the deque unless it violates the capacity restriction.
+* offerLast()	Inserts the specified element at the end of the deque unless it violates the capacity restriction.
+* peek()	Retrieves but does not move the head of the queue represented by the deque or may return null if the deque is empty.
+* peekFirst()	Retrieves but does not move the first element of the deque or may return null if the deque is empty.
+* peekLast()	Retrieves but does not move the last element of the deque or may return null if the deque is empty.
+* poll()	Retrieves and remove the head of the queue represented by the deque or may return null if the deque is empty.
+* pollFirst()	Retrieves and remove the first element of the deque or may return null if the deque is empty.
+* pollLast()	Retrieves and remove the last element of the deque or may return null if the deque is empty.
+* pop()	Pops an element from the stack represented by the deque.
+* push()	Pushes an element onto the stack represented by the deque.
+* remove()	Retrieves and remove the head of the queue represented by the deque.
+* remove(Object o)	Removes the first occurrence of the specified element from the deque.
+* removeFirst()	Retrieves and remove the first element from the deque.
+* removeFirstOccurrence(Object o)	Remove the first occurrence of the element from the deque.
+* removeLast()	Retrieve and remove the last element from the deque.
+* removeLastOccurrence(Object o)	Remove the last occurrence of the element from the deque.
+* size()	Returns the total number of elements in the deque.
+
+
+
+A deque is a linear collection that supports insertion and deletion of elements from both the ends. The name 'deque' is an abbreviation for double-ended queue.
+
+```java
+Deque<Integer> deque = new ArrayDeque<Integer>();  
+// Inserts the element.  
+deque.add(1);  
+deque.add(2);  
+deque.add(3);  
+System.out.println("Inserting three elements : ");  
+for (Integer integer : deque) {  
+System.out.println(integer);      
+}  
+// Popping the element.  
+deque.pop();  
+System.out.println("After popping : ");  
+for (Integer integer : deque) {  
+    System.out.println(integer);  
+}  
+deque.remove(3);  
+System.out.println("Removing the element 3 :"+deque);  
+
+System.out.println();
+
+   Deque<String> deque2 = new ArrayDeque<String>();  
+   // Adding the element in the front of the deque.  
+   deque2.addFirst("Java");  
+    System.out.println("The first element is : "+deque2);  
+   // Again adding the element in the front of the deque.  
+    deque2.addFirst("Python");  
+    System.out.println("After adding the next element in the front of the deque : "+deque2);  
+     deque2.add("Ruby");  
+     System.out.println("The final deque is  : "+deque2);  
+   // Returns the number of elements.  
+     int size =  deque2.size();  
+     System.out.println("The number of elements are : "+size);  
+    // Removes the last element.  
+     deque2.removeLast();  
+ System.out.println("Deque after removing the last element is given as :  "+deque2);  
+```
 
 
 #### ArrayDeque
