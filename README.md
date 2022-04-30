@@ -72,9 +72,68 @@ System.out.println("Elements in collection : "+set);
 
 Iterator interface provides the facility of iterating the elements in a forward direction only.
 
+In Java, an Iterator is one of the Java cursors. Java Iterator is an interface that is practiced in order to iterate over a collection of Java object components entirety one by one. It is free to use in the Java programming language since the Java 1.2 Collection framework. It belongs to java.util package.
+
 * public boolean hasNext()	It returns true if the iterator has more elements otherwise it returns false.
 * public Object next()	It returns the element and moves the cursor pointer to the next element.
 * public void remove()	It removes the last elements returned by the iterator. It is less used.
+* forEachRemaining(Consumer action)
+
+Advantages of Java Iterator
+
+* The user can apply these iterators to any of the classes of the Collection framework.
+* In Java Iterator, we can use both of the read and remove operations.
+* If a user is working with a for loop, they cannot modernize(add/remove) the Collection, whereas, if they use the Java Iterator, they can simply update the Collection.
+* The Java Iterator is considered the Universal Cursor for the Collection API.
+* The method names in the Java Iterator are very easy and are very simple to use.
+
+Disadvantages of Java Iterator
+
+* The Java Iterator only preserves the iteration in the forward direction. In simple words, the Java Iterator is a uni-directional Iterator.
+* The replacement and extension of a new component are not approved by the Java Iterator.
+* In CRUD Operations, the Java Iterator does not hold the various operations like CREATE and UPDATE.
+* In comparison with the Spliterator, Java Iterator does not support traversing elements in the parallel pattern which implies that Java Iterator supports only Sequential iteration.
+* In comparison with the Spliterator, Java Iterator does not support more reliable execution to traverse the bulk volume of data.
+
+
+The forEachRemaining() method was added in the Java 8. Let's discuss each method in detail.
+
+
+* default void remove(): This method also does not require any parameters. There is no return type of this method. The main function of this method is to remove the last element returned by the iterator traversing through the underlying collection. The remove () method can be requested hardly once per the next () method call. If the iterator does not support the remove operation, then it throws the UnSupportedOperationException. It also throws the IllegalStateException if the next method is not yet called.
+
+* default void forEachRemaining(Consumer action): It is the only method of Java Iterator that takes a parameter. It accepts action as a parameter. Action is nothing but that is to be performed. There is no return type of the method. This method performs the particularized operation on all of the left components of the collection until all the components are consumed or the action throws an exception. Exceptions thrown by action are delivered to the caller. If the action is null, then it throws a NullPointerException.
+
+```java
+ArrayList<String> cityNames = new ArrayList<String>();  
+    
+cityNames.add("Delhi");  
+cityNames.add("Mumbai");  
+cityNames.add("Kolkata");  
+cityNames.add("Chandigarh");  
+cityNames.add("Noida");  
+
+// Iterator to iterate the cityNames  
+Iterator iterator = cityNames.iterator();  
+
+System.out.println("CityNames elements : ");  
+
+while (iterator.hasNext())  
+    System.out.print(iterator.next() + " ");  
+
+System.out.println();  
+
+```
+
+* The Java Iterator is an interface added in the Java Programming language in the Java 1.2 Collection framework. It belongs to java.util package.
+* It is one of the Java Cursors that are practiced to traverse the objects of the collection framework.
+* The Java Iterator is used to iterate the components of the collection object one by one.
+* The Java Iterator is also known as the Universal cursor of Java as it is appropriate for all the classes of the Collection framework.
+* The Java Iterator also supports the operations like READ and REMOVE.
+* The methods names of the Iterator class are very simple and easy to use compared to the method names of Enumeration Iterator.
+
+        
+
+
 
 ### Iterable Interface
 
