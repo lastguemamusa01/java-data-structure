@@ -1676,5 +1676,118 @@ public class MyClass {
 }
 ```
 
+### Comparator interface
+
+Java Comparator interface is used to order the objects of a user-defined class.
+
+This interface is found in java.util package and contains 2 methods compare(Object obj1,Object obj2) and equals(Object element).
+
+It provides multiple sorting sequences, i.e., you can sort the elements on the basis of any data member, for example, rollno, name, age or anything else
 
 
+* public int compare(Object obj1, Object obj2)	It compares the first object with the second object.
+* public boolean equals(Object obj)	It is used to compare the current object with the specified object.
+
+in the compare method you can use compareTo method.
+
+
+Java Comparator Example with generics
+
+Let's see the example of sorting the elements of List on the basis of age and name. In this example, we have created 4 java classes:
+
+* Student.java
+* AgeComparator.java
+* NameComparator.java
+* Simple.java
+
+
+
+```java
+import java.util.*;
+
+class Student {
+    int rollno;
+    String name;
+    int age;
+    
+    Student(int rollno, String name, int age ) {
+        this.rollno = rollno;
+        this.name = name;
+        this.age = age;
+    }
+    
+
+}
+
+class AgeComparator implements Comparator<Student> {
+    
+    public int compare(Student s1, Student s2) {
+        
+        if(s1.age == s2.age) {
+            return 0;
+        } else if(s1.age > s2.age) { // descending order
+            return 1;
+        } else {
+            return -1;
+        }
+    }
+}
+
+class NameComparator implements Comparator<Student> {
+    
+    public int compare(Student s1, Student s2) {
+   
+
+        // can use compareTo method in Comparator
+        return s1.name.compareTo(s2.name);
+    }
+}
+
+public class MyClass {
+    public static void main(String args[]) {
+        
+        ArrayList<Student> list = new ArrayList<Student>();
+        list.add(new Student(232,"damian",18));
+        list.add(new Student(1242,"julius",22));
+        list.add(new Student(535,"sammy",15));
+        
+        Collections.sort(list, new AgeComparator());
+        
+        for(Student st: list) {
+            System.out.println("roll no " + st.rollno + " name " + st.name + " age "+st.age);
+        }
+        
+        System.out.println();
+        
+        Collections.sort(list, new NameComparator());
+        
+        for(Student st: list) {
+            System.out.println("roll no " + st.rollno + " name " + st.name + " age "+st.age);
+        }
+ 
+    }
+}
+```
+
+Java 8 Comparator interface
+
+Java 8 Comparator interface is a functional interface that contains only one abstract method. Now, we can use the Comparator interface as the assignment target for a lambda expression or method reference.
+
+* int compare(T o1, T o2)	It compares the first object with second object.
+* static <T,U extends Comparable<? super U>> Comparator<T> comparing(Function<? super T,? extends U> keyExtractor)	It accepts a function that extracts a Comparable sort key from a type T, and returns a Comparator that compares by that sort key.
+* static <T,U> Comparator<T> comparing(Function<? super T,? extends U> keyExtractor, Comparator<? super U> keyComparator)	It accepts a function that extracts a sort key from a type T, and returns a Comparator that compares by that sort key using the specified Comparator.
+* static <T> Comparator<T> comparingDouble(ToDoubleFunction<? super T> keyExtractor)	It accepts a function that extracts a double sort key from a type T, and returns a Comparator that compares by that sort key.
+* static <T> Comparator<T> comparingInt(ToIntFunction<? super T> keyExtractor)	It accepts a function that extracts an int sort key from a type T, and returns a Comparator that compares by that sort key.
+* static <T> Comparator<T> comparingLong(ToLongFunction<? super T> keyExtractor)	It accepts a function that extracts a long sort key from a type T, and returns a Comparator that compares by that sort key.
+* boolean equals(Object obj)	It is used to compare the current object with the specified object.
+* static <T extends Comparable<? super T>> Comparator<T> naturalOrder()	It returns a comparator that compares Comparable objects in natural order.
+* static <T> Comparator<T> nullsFirst(Comparator<? super T> comparator)	It returns a comparator that treats null to be less than non-null elements.
+* static <T> Comparator<T> nullsLast(Comparator<? super T> comparator)	It returns a comparator that treats null to be greater than non-null elements.
+* default Comparator<T> reversed()	It returns comparator that contains reverse ordering of the provided comparator.
+* static <T extends Comparable<? super T>> Comparator<T> reverseOrder()	It returns comparator that contains reverse of natural ordering.
+* default Comparator<T> thenComparing(Comparator<? super T> other)	It returns a lexicographic-order comparator with another comparator.
+* default <U extends Comparable<? super U>> Comparator<T> thenComparing(Function<? super T,? extends U> keyExtractor)	It returns a lexicographic-order comparator with a function that extracts a Comparable sort key.
+* default <U> Comparator<T> thenComparing(Function<? super T,? extends U> keyExtractor, Comparator<? super U> keyComparator)	It returns a lexicographic-order comparator with a function that extracts a key to be compared with the given Comparator.
+* default Comparator<T> thenComparingDouble(ToDoubleFunction<? super T> keyExtractor)	It returns a lexicographic-order comparator with a function that extracts a double sort key.
+* default Comparator<T> thenComparingInt(ToIntFunction<? super T> keyExtractor)	It returns a lexicographic-order comparator with a function that extracts a int sort key.
+* default Comparator<T> thenComparingLong(ToLongFunction<? super T> keyExtractor)	It returns a lexicographic-order comparator with a function that extracts a long sort key.
