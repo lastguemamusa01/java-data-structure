@@ -658,19 +658,100 @@ ArrayList and Vector both implements List interface and maintains insertion orde
 The stack is the subclass of Vector. It implements the last-in-first-out data structure, i.e., Stack. The stack contains all of the methods of Vector class and also provides its methods like boolean push(), boolean peek(), boolean push(object o), which defines its properties.
 
 ```java
-Stack<String> stack = new Stack<String>();  
-stack.push("Ayush");  
-stack.push("Garvit");  
-stack.push("Amit");  
-stack.push("Ashish");  
-stack.push("Garima");  
-stack.pop();  
+import java.util.*;
 
-Iterator<String> itr=stack.iterator();  
-while(itr.hasNext()){  
-    System.out.println(itr.next());  
+
+public class MyClass {
+    public static void main(String args[]) {
+        
+      Stack<String> stack = new Stack<String>();  
+      
+      // checking stack is empty or not  
+boolean result = stack.empty();  
+System.out.println("Is the stack empty? " + result);  
+System.out.println();
+
+        stack.push("Ayush");  
+        stack.push("Garvit");  
+        stack.push("Amit");  
+        stack.push("Ashish");  
+        stack.push("Garima");  
+        stack.pop();  
+        
+        // Find the size of the Stack  
+        int x=stack.size();  
+        System.out.println("The stack size is: "+x);  
+        
+        System.out.println();
+        
+        Iterator<String> itr=stack.iterator();  
+        while(itr.hasNext()){  
+            System.out.println(itr.next());  
+        }
+        
+        System.out.println();
+        String namePeek = stack.peek(); 
+        //prints stack  
+        System.out.println("Element at top: " + namePeek);  
+        
+        stack.pop();  
+        
+        System.out.println();
+        System.out.println("Stack: " + stack);  
+        
+        // Search an element  
+        System.out.println();
+        int  searchLocation = stack.search("Garvit");  
+        System.out.println("Location of Garvit: " + searchLocation);  
+        
+        // foreach example
+        System.out.println();
+        
+        stack.forEach(n -> {
+            System.out.println(n);   
+        });
+        
+        // listiterator example
+        System.out.println();
+          
+        ListIterator<String> listIterator = stack.listIterator(stack.size());
+        while(listIterator.hasPrevious()) {
+            String name = listIterator.previous();
+            System.out.println(name);
+        
+        }
+    
+ 
+    }
 }
 ```
+
+The stack is a linear data structure that is used to store the collection of objects. It is based on Last-In-First-Out (LIFO)
+
+The stack data structure has the two most important operations that are push and pop. The push operation inserts an element into the stack and pop operation removes an element from the top of the stack. Let's see how they work on stack.
+
+![image](https://user-images.githubusercontent.com/25869911/166125511-1befbf9b-97cd-402d-a14d-1675e50ee075.png)
+
+
+In Java, Stack is a class that falls under the Collection framework that extends the Vector class. It also implements interfaces List, Collection, Iterable, Cloneable, Serializable.
+
+Stack stk = new Stack();  
+
+
+* empty()	boolean	The method checks the stack is empty or not.
+* push(E item)	E	The method pushes (insert) an element onto the top of the stack.
+* pop()	E	The method removes an element from the top of the stack and returns the same element as the value of that function.
+* peek()	E	The method looks at the top element of the stack without removing it.
+* search(Object o)	int	The method searches the specified object and returns the position of the object.
+
+
+Iterate Elements
+
+Iterate means to fetch the elements of the stack. We can fetch elements of the stack using three different methods are as follows:
+
+* Using iterator() Method
+* Using forEach() Method
+* Using listIterator() Method
 
 ### Queue Interface
 
