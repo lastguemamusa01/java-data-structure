@@ -1791,3 +1791,111 @@ Java 8 Comparator interface is a functional interface that contains only one abs
 * default Comparator<T> thenComparingDouble(ToDoubleFunction<? super T> keyExtractor)	It returns a lexicographic-order comparator with a function that extracts a double sort key.
 * default Comparator<T> thenComparingInt(ToIntFunction<? super T> keyExtractor)	It returns a lexicographic-order comparator with a function that extracts a int sort key.
 * default Comparator<T> thenComparingLong(ToLongFunction<? super T> keyExtractor)	It returns a lexicographic-order comparator with a function that extracts a long sort key.
+
+
+use getters and setters in custom class. use the comparing method of the new java 8 comparator to reduce the comparator implementation
+
+example : 
+
+```java
+import java.util.*;
+
+class Student {
+    int rollno;
+    String name;
+    int age;
+    
+    Student(int rollno, String name, int age ) {
+        this.rollno = rollno;
+        this.name = name;
+        this.age = age;
+    }
+    
+    // getters and setters
+    
+    public int getRollno() {  
+        return rollno;  
+    }  
+  
+    public void setRollno(int rollno) {  
+        this.rollno = rollno;  
+    }  
+  
+    public String getName() {  
+        return name;  
+    }  
+  
+    public void setName(String name) {  
+        this.name = name;  
+    }  
+  
+    public int getAge() {  
+        return age;  
+    }  
+  
+    public void setAge(int age) {  
+        this.age = age;  
+    }  
+
+}
+
+public class MyClass {
+    public static void main(String args[]) {
+        
+        ArrayList<Student> list = new ArrayList<Student>();
+        list.add(new Student(232,"damian",18));
+        list.add(new Student(1242,"julius",22));
+        list.add(new Student(535,"sammy",15));
+        
+         ArrayList<Student> alNull=new ArrayList<Student>();    
+         alNull.add(new Student(101,"Vijay",23));    
+         alNull.add(new Student(106,"Ajay",27));    
+         alNull.add(new Student(105,null,21));
+         
+        
+        //Sorting elements on the basis of name  
+        
+        Comparator<Student> cm1 = Comparator.comparing(Student::getName);
+        Collections.sort(list, cm1);
+        
+        
+        for(Student st: list) {
+            System.out.println("roll no " + st.rollno + " name " + st.name + " age "+st.age);
+        }
+        
+        System.out.println();
+        
+        // sotring by ages
+        
+        Comparator<Student> cm2 = Comparator.comparing(Student::getAge);
+        Collections.sort(list, cm2);
+        
+        for(Student st: list) {
+            System.out.println("roll no " + st.rollno + " name " + st.name + " age "+st.age);
+        }
+        
+        System.out.println();
+        // sorting as first null order
+        Comparator<Student> cm3 = Comparator.comparing(Student::getName, Comparator.nullsFirst(String::compareTo));
+        Collections.sort(alNull, cm3);
+        
+         for(Student st: alNull) {
+            System.out.println("roll no " + st.rollno + " name " + st.name + " age "+st.age);
+        }
+        System.out.println();
+        // sorting as null last order
+        Comparator<Student> cm4 = Comparator.comparing(Student::getName, Comparator.nullsLast(String::compareTo));
+        Collections.sort(alNull, cm4);
+        
+         for(Student st: alNull) {
+            System.out.println("roll no " + st.rollno + " name " + st.name + " age "+st.age);
+        }
+        
+        
+ 
+    }
+}
+
+```
+
+
