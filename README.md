@@ -2400,6 +2400,141 @@ email=sonoojaiswal@javatpoint.com
 name=Sonoo Jaiswal  
 ```
    
+### ConcurrentHashMap class
+  
+A hash table supporting full concurrency of retrievals and high expected concurrency for updates. This class obeys the same functional specification as Hashtable and includes versions of methods corresponding to each method of Hashtable. However, even though all operations are thread-safe, retrieval operations do not entail locking, and there is not any support for locking the entire table in a way that prevents all access. This class is fully interoperable with Hashtable in programs that rely on its thread safety but not on its synchronization details..
+  
+* public void clear()	The clear() method of ConcurrentHashMap class removes all of the mappings from this map.
+* 2.	public V compute(K key, BiFunction<? super K,? super V,? extends V> remappingFunction)	The compute() method of ConcurrentHashMap class Attempts to compute a mapping for the specified key and its current mapped value (or null if there is no current mapping).
+* 3.	public V computeIfAbsent(K key, Function<? super K,? extends V> mappingFunction)	The computeIfAbsent() method of ConcurrentHashMap class attempts to compute its value using the given mapping function and enters it into this map unless null If the specified key is not already associated with a value.
+* 4.	public V computeIfPresent(K key, BiFunction<? super K,? super V,? extends V> remappingFunction)	The computeIfPresent() method of ConcurrentHashMap class Attempts to compute a new mapping given the key and its current mapped value, If the value for the specified key is present.
+* 5.	public boolean contains(Object value)	The contains() method of ConcurrentHashMap class tests if some key maps into the specified value in this table..
+* 6.	public boolean containsKey(Object key)	The containsKey() method of ConcurrentHashMap class tests if the specified object is a key in this table.
+* 7.	public boolean containsValue(Object value)	The containsValue() method of ConcurrentHashMap class returns true if this map maps one or more keys to the specified value. Note: This method may require a full traversal of the map, and is much slower than method containsKey.
+* 8.	public Enumeration<V> elements()	The elements() method of ConcurrentHashMap class returns an enumeration of the values in this table.
+* 9.	public Set<Map.Entry<K,V>> entrySet()	The entrySet() method of ConcurrentHashMap class Returns a Set view of the mappings contained in this map. The changes made to the map are reflected in the set, and vice-versa.
+* 10.	public boolean equals(Object o)	The elements() method of ConcurrentHashMap class Compares the specified object with this map for equality and returns true if the given object is a map with the same mappings as this map.
+* 11.	public V get(Object key)	The get() method of ConcurrentHashMap class Returns the value to which the specified key is mapped, or null if this map contains no mapping for the key.
+* 12.	public V getOrDefault(Object key, V defaultValue)	The getOrDefault() method of ConcurrentHashMap class Returns the value to which the specified key is mapped, or the given default value if this map contains no mapping for the key.
+* 13.	public int hashCode()	The hashcode() method of ConcurrentHashMap class Returns the hash code value for this Map, i.e., the sum of, for each key-value pair in the map, key.hashCode() ^ value.hashCode().
+* 14.	public Enumeration<K> keys()	The keys() method of ConcurrentHashMap class returns an enumeration of the keys in this table.
+* 15.	public ConcurrentHashMap.KeySetView<K,V> keySet()
+public ConcurrentHashMap.KeySetView<K,V> keySet(V mappedValue)	The keySet() method of ConcurrentHashMap class returns a Set view of the keys contained in this map. The set is stacked by the map, so changes to the map are reflected in the set, and vice-versa.
+* 16.	public long mappingCount()	The mappingCount() method of ConcurrentHashMap class returns the number of mappings. The value returned is an estimated value; the actual count may differ if there are concurrent insertions or removals.
+* 17.	public V merge(K key, V value, BiFunction<? super V,? super V,? extends V> remappingFunction)	The merge() method of ConcurrentHashMap class merge sets If the specified key is not already associated with a (non-null) value, associates it with the given value.
+* 18.	public static <K> ConcurrentHashMap.KeySetView<K,Boolean> newKeySet()
+public static <K> ConcurrentHashMap.KeySetView<K,Boolean> newKeySet(int initialCapacity)	The newKeySet() method of ConcurrentHashMap class Creates a new Set backed by a ConcurrentHashMap from the given type to Boolean.TRUE.
+* 19.	public V put(K key, V value)	The put() method of ConcurrentHashMap class Maps the specified key to the specified value in this table.
+* 20.	public void putAll(Map<? extends K,? extends V> m)	The putAll() method of ConcurrentHashMap class Copies all of the mappings from the specified map to this one. These mappings replace any mappings that this map had for any of the keys currently in the specified map.
+* 21.	public V putIfAbsent(K key, V value)	The putIfAbsent() method of ConcurrentHashMap class Maps If the specified key is not already associated with a value, associates it with the given value. This is equivalent to, for this map.
+* 22.	public V remove(Object key)
+public boolean remove(Object key, Object value)	The remove() method of ConcurrentHashMap class Removes the key (and its corresponding value) from this map. This method does nothing if the key is not on the map.
+* 23.	public V replace(K key, V value)
+public boolean replace(K key, V oldValue, V newValue)	The replace() method of ConcurrentHashMap class replaces the entry for a key only if currently mapped to some value. This is equivalent to, for this map.
+* 24.	public String toString()	The toString() method of ConcurrentHashMap class returns a string representation of this map. The string representation consists of a list of key-value mappings (in no particular order) enclosed in braces ("{}").
+* 25.	public void forEach(long parallelismThreshold, BiConsumer<? super K,? super V> action)
+public <U> void forEach(long parallelismThreshold, BiFunction<? super K,? super V,? extends U> transformer, Consumer<? super U> action)	The forEach() method of ConcurrentHashMap class Performs the given action for each (key, value).
+* 26.	public Collection<V> values()	The values() method of ConcurrentHashMap class returns a Collection view of the values contained in this map. The map backs the collection, so changes to the map are reflected in the collection, and vice-versa. The collection supports element removal, which removes the corresponding mapping from this map, via the Iterator
+   
+```java
+import java.util.*;
+import java.util.concurrent.*;
 
-   
-   
+public class MyClass {
+    public static void main(String args[]) {
+        
+       ConcurrentHashMap<String, Integer>  mymap = new ConcurrentHashMap<String,  Integer>();   
+    
+        mymap.put("AAA", 10);   
+        mymap.put("BBB", 15);   
+        mymap.put("CCC", 25);   
+        mymap.put("DDD", 255);   
+        mymap.put("EEE",30);   
+        System.out.println(" Mappings are: " +mymap);   
+  
+        System.out.println("is 255  present? ::  "  
+                           + mymap.containsValue(255));    
+ 
+    }
+}
+```
+
+### CouncurrentLinkedQueue
+
+ConcurrentLinkedQueue is an unbounded thread-safe queue which arranges the element in FIFO. New elements are added at the tail of this queue and the elements are added from the head of this queue.
+
+ConcurrentLinkedQueue class and its iterator implements all the optional methods of the Queue and Iterator interfaces.
+
+* add()	Inserts the specified element at the tail of this queue
+* addAll()	Inserts all the elements which are present in the specified collection to the tail of this queue
+* contains()	Returns true if this queue contains the specified element
+* forEach()	Performs the given action for each element until all elements have been processed.
+* isEmpty()	Returns true if this queue contains no elements.
+* iterator()	Returns an iterator over the elements in this queue
+* offer()	Inserts the specified element at the tail of this queue
+* remove()	Removes the specified element from this queue, if this element is present in the queue
+* removeAll()	Removes all the elements of this in queue which are present in the specified collection.
+* removeIf()	Removes all the elements in this queue that satisfy the given predicate filter.
+* retainAll()	Retain only those elements in this queue that are present in the specified collection.
+* size()	Returns the number of the elements in this queue.
+* spliterator()	Returns a spliterator over the elements in this queue.
+* toArray()	Returns an array containing all the elements of this queue which are in proper sequence.
+
+```java 
+import java.util.*;
+import java.util.concurrent.*;
+
+public class MyClass {
+    public static void main(String args[]) {
+        
+        ConcurrentLinkedQueue<Integer> queue = new ConcurrentLinkedQueue<Integer>();  
+        for (int i = 1; i <=5; i++) {  
+            //  Adding items to the tail of this queue  
+            queue.add(i);
+            
+        }  
+        //inserts the element at the tail of this queue  
+        queue.offer(6);  
+        System.out.println("Queue : "+queue);  
+        //Returns true if this queue contains the specified element  
+        if(queue.contains(4)){  
+            System.out.println("This queue conatins 4");  
+        }  
+        else{  
+            System.out.println("4 is absent");  
+        }  
+        //returns true if the queue is empty  
+        if(queue.isEmpty()){  
+            System.out.println("Add some elements because the queue is empty.");  
+        }  
+        else{  
+            System.out.println("Queue is not empty");  
+        }
+        
+        System.out.println();
+        
+        ConcurrentLinkedQueue<Integer> queue2 = new ConcurrentLinkedQueue<Integer>();  
+       List<Integer> list = new ArrayList<Integer>();  
+       queue2.add(11);  
+       queue2.add(100);  
+       queue2.add(122);  
+       queue2.add(102);  
+       queue2.add(112);  
+       list.add(11);  
+       list.add(100);  
+       System.out.println("Elements in queue : "+queue2);  
+       //remove() method will remove the specified element from the queue  
+       queue2.remove(122);  
+       queue2.remove(102);  
+       System.out.println("Remaining elements in queue : "+queue2);  
+       //Removes all the elements of this in queue which are present in the list  
+       queue2.removeAll(list);  
+       System.out.println("Elemts of the list will get removed : "+queue2);  
+       //Retain only those elements in this queue that are present in the list  
+       queue2.retainAll(list);  
+       System.out.println("Queue will retain the elements of the list: "+queue2);  
+       
+    }
+}
+```
+
