@@ -2538,3 +2538,17 @@ public class MyClass {
 }
 ```
 
+### String
+
+```java
+char[] ch={'j','a','v','a','t','p','o','i','n','t'};  
+String s=new String(ch);  
+
+String s="javatpoint";  
+```
+
+The java.lang.String class implements Serializable, Comparable and CharSequence interfaces.
+
+![image](https://user-images.githubusercontent.com/25869911/166317361-b353fdb1-9beb-42d5-b90a-5fd15374c650.png)
+
+
