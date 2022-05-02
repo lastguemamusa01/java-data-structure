@@ -2809,3 +2809,58 @@ StringBuilder s2 = new StringBuilder(" World");
 StringBuilder s = s1.append(s2);
 System.out.println(s.toString());
 ```
+
+2. String concatenation using format() method
+
+String.format() method allows to concatenate multiple strings using format specifier like %s followed by the string values or objects.
+
+
+```java
+String s1 = new String("Hello");
+String s2 = new String(" World");
+String s = String.format("%s%s", s1,s2);
+System.out.println(s);
+```
+
+Here, the String objects s is assigned the concatenated result of Strings s1 and s2 using String.format() method. format() accepts parameters as format specifier followed by String objects or values.
+
+3. String concatenation using String.join() method (Java Version 8+)
+
+The String.join() method is available in Java version 8 and all the above versions. String.join() method accepts arguments first a separator and an array of String objects.
+
+```java
+String s1 = new String("Hello");
+String s2 = new String(" World");
+String s = String.join("",s1,s2);
+System.out.println(s);
+```
+
+4. String concatenation using StringJoiner class (Java Version 8+)
+
+StringJoiner class has all the functionalities of String.join() method. In advance its constructor can also accept optional arguments, prefix and suffix.
+
+```java
+StringJoiner s = new StringJoiner(", ");
+s.add("Hello");
+s.add("World");
+System.out.println(s.toString());
+```
+
+5. String concatenation using Collectors.joining() method (Java (Java Version 8+)
+
+The Collectors class in Java 8 offers joining() method that concatenates the input elements in a similar order as they occur.
+
+```java
+import java.util.*;
+import java.util.stream.Collectors;  
+
+public class MyClass {
+    public static void main(String args[]) {
+        
+        List<String> liststr = Arrays.asList("abc","pqr","xyz"); // List of String array
+        String str = liststr.stream().collect(Collectors.joining(",")); //performs joining operation
+        System.out.println(str);
+    }
+}
+```
+
