@@ -3125,6 +3125,38 @@ In the StringTokenizer class, the delimiters can be provided at the time of crea
 ![image](https://user-images.githubusercontent.com/25869911/166404255-8dcbe361-7414-466f-8d32-9d1584e65412.png)
 
 
+Constructors of the StringTokenizer Class
 
+* StringTokenizer(String str)	It creates StringTokenizer with specified string.
+* StringTokenizer(String str, String delim)	It creates StringTokenizer with specified string and delimiter.
+* StringTokenizer(String str, String delim, boolean returnValue)	It creates StringTokenizer with specified string, delimiter and returnValue. If return value is true, delimiter characters are considered to be tokens. If it is false, delimiter characters serve to separate tokens.
+
+* boolean hasMoreTokens()	It checks if there is more tokens available.
+* String nextToken()	It returns the next token from the StringTokenizer object.
+* String nextToken(String delim)	It returns the next token based on the delimiter.
+* boolean hasMoreElements()	It is the same as hasMoreTokens() method.
+* Object nextElement()	It is the same as nextToken() but its return type is Object.
+* int countTokens()	It returns the total number of tokens.
+
+
+```java
+import java.util.*;
+
+public class MyClass {
+  
+    public static void main(String[] args){  
+        
+        StringTokenizer st = new StringTokenizer("my name is khan", " ");
+        System.out.println(st.countTokens());
+        
+        while(st.hasMoreTokens()) {
+            System.out.println(st.nextToken());
+        }
+        
+        
+        
+    }  
+}
+```
 
 
