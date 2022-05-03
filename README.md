@@ -14,6 +14,10 @@ Let us see the hierarchy of Collection framework. The java.util package contains
 
 ![](2022-04-26-23-27-21.png)
 
+
+![image](https://user-images.githubusercontent.com/25869911/166405944-90cce1aa-9218-4ac0-bdbc-8bf4840e3baa.png)
+
+
 ### Collection inteface
 
 
