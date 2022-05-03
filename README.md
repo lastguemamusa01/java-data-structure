@@ -2864,3 +2864,267 @@ public class MyClass {
 }
 ```
 
+Substring in Java
+
+A part of String is called substring. In other words, substring is a subset of another String. Java String class provides the built-in substring() method that extract a substring from the given string by using the index values passed as an argument. In case of substring() method startIndex is inclusive and endIndex is exclusive.
+
+* public String substring(int startIndex):
+This method returns new String object containing the substring of the given string from specified startIndex (inclusive). The method throws an IndexOutOfBoundException when the startIndex is larger than the length of String or less than zero.
+
+* public String substring(int startIndex, int endIndex):
+This method returns new String object containing the substring of the given string from specified startIndex to endIndex. The method throws an IndexOutOfBoundException when the startIndex is less than zero or startIndex is greater than endIndex or endIndex is greater than length of String.
+
+In case of String:
+
+* startIndex: inclusive
+* endIndex: exclusive
+
+```java
+String s="SachinTendulkar";    
+System.out.println("Original String: " + s);  
+System.out.println("Substring starting from index 6: " +s.substring(6));//Tendulkar    
+System.out.println("Substring starting from index 0 to 6: "+s.substring(0,6)); //Sachin   
+```
+
+Using String.split() method:
+
+The split() method of String class can be used to extract a substring from a sentence. It accepts arguments in the form of a regular expression.
+
+```java
+import java.util.*;
+
+public class MyClass {
+    public static void main(String args[]) {
+       String text= new String("Hello, My name is Sachin");  
+       /* Splits the sentence by the delimeter passed as an argument */  
+       String[] sentences = text.split(",");
+       System.out.println(Arrays.toString(sentences));
+       
+       
+    }
+}
+```
+
+Java String Class Methods
+
+The java.lang.String class provides a lot of built-in methods that are used to manipulate string in Java. By the help of these methods, we can perform operations on String objects such as trimming, concatenating, converting, comparing, replacing strings etc.
+
+```java
+String s = "Minku";
+System.out.println(s.toUpperCase());
+System.out.println(s.toLowerCase());
+String trimExample = "   min ku    ";
+// The String class trim() method eliminates white spaces before and after the String.
+System.out.println(trimExample.trim());
+System.out.println(s.startsWith("Mi")); // true
+System.out.println(s.endsWith("ku"));  // false
+// The String class charAt() method returns a character at specified index.
+System.out.println(s.charAt(0)); // M
+System.out.println(s.length()); // 5
+// The String class valueOf() method coverts given type such as int, long, float, double, boolean, char and char array into String.
+int a = 10;
+String sa = String.valueOf(a);
+System.out.println(sa); // 10
+// The String class replace() method replaces all occurrence of first sequence of character with second sequence of character.
+String s1="Java is a programming language. Java is a platform. Java is an Island.";      
+String replaceString = s1.replace("Java","Kava");
+System.out.println(replaceString);
+```
+
+Java StringBuffer Class
+
+Java StringBuffer class is used to create mutable (modifiable) String objects. The StringBuffer class in Java is the same as String class except it is mutable i.e. it can be changed.
+
+Note: Java StringBuffer class is thread-safe i.e. multiple threads cannot access it simultaneously. So it is safe and will result in an order.
+
+* StringBuffer()	It creates an empty String buffer with the initial capacity of 16.
+* StringBuffer(String str)	It creates a String buffer with the specified string..
+* StringBuffer(int capacity)	It creates an empty String buffer with the specified capacity as length.
+
+* public synchronized StringBuffer	append(String s)	It is used to append the specified string with this string. The append() method is overloaded like append(char), append(boolean), append(int), append(float), append(double) etc.
+* public synchronized StringBuffer	insert(int offset, String s)	It is used to insert the specified string with this string at the specified position. The insert() method is overloaded like insert(int, char), insert(int, boolean), insert(int, int), insert(int, float), insert(int, double) etc.
+* public synchronized StringBuffer	replace(int startIndex, int endIndex, String str)	It is used to replace the string from specified startIndex and endIndex.
+* public synchronized StringBuffer	delete(int startIndex, int endIndex)	It is used to delete the string from specified startIndex and endIndex.
+* public synchronized StringBuffer	reverse()	is used to reverse the string.
+* public int	capacity()	It is used to return the current capacity.
+* public void	ensureCapacity(int minimumCapacity)	It is used to ensure the capacity at least equal to the given minimum.
+* public char	charAt(int index)	It is used to return the character at the specified position.
+* public int	length()	It is used to return the length of the string i.e. total number of characters.
+* public String	substring(int beginIndex)	It is used to return the substring from the specified beginIndex.
+* public String	substring(int beginIndex, int endIndex)	It is used to return the substring from the specified beginIndex and endIndex.
+
+What is a mutable String?
+
+A String that can be modified or changed is known as mutable String. StringBuffer and StringBuilder classes are used for creating mutable strings.
+
+
+```java
+StringBuffer sb = new StringBuffer("Hello ");
+System.out.println(sb.capacity());//default 22
+sb.ensureCapacity(70);
+System.out.println(sb.capacity());//default 70
+sb.append("Java");
+sb.insert(1,"no");
+sb.replace(1,3, "Java");
+sb.delete(1,3);
+sb.reverse();
+System.out.println(sb); // avaJ olleavH
+```
+
+Java StringBuilder Class
+
+Java StringBuilder class is used to create mutable (modifiable) String. The Java StringBuilder class is same as StringBuffer class except that it is non-synchronized. It is available since JDK 1.5.
+
+* StringBuilder()	It creates an empty String Builder with the initial capacity of 16.
+* StringBuilder(String str)	It creates a String Builder with the specified string.
+* StringBuilder(int length)	It creates an empty String Builder with the specified capacity as length.
+
+* public StringBuilder append(String s)	It is used to append the specified string with this string. The append() method is overloaded like append(char), append(boolean), append(int), append(float), append(double) etc.
+* public StringBuilder insert(int offset, String s)	It is used to insert the specified string with this string at the specified position. The insert() method is overloaded like insert(int, char), insert(int, boolean), insert(int, int), insert(int, float), insert(int, double) etc.
+* public StringBuilder replace(int startIndex, int endIndex, String str)	It is used to replace the string from specified startIndex and endIndex.
+* public StringBuilder delete(int startIndex, int endIndex)	It is used to delete the string from specified startIndex and endIndex.
+* public StringBuilder reverse()	It is used to reverse the string.
+* public int capacity()	It is used to return the current capacity.
+* public void ensureCapacity(int minimumCapacity)	It is used to ensure the capacity at least equal to the given minimum.
+* public char charAt(int index)	It is used to return the character at the specified position.
+* public int length()	It is used to return the length of the string i.e. total number of characters.
+* public String substring(int beginIndex)	It is used to return the substring from the specified beginIndex.
+* public String substring(int beginIndex, int endIndex)	It is used to return the substring from the specified beginIndex and endIndex.
+
+```java
+StringBuilder sb = new StringBuilder("Hello ");
+System.out.println(sb.capacity());//default 22
+sb.ensureCapacity(70);
+System.out.println(sb.capacity());//default 70
+sb.append("Java");
+sb.insert(1,"no");
+sb.replace(1,3, "Java");
+sb.delete(1,3);
+sb.reverse();
+System.out.println(sb); // avaJ olleavH
+```
+
+Difference between String and StringBuffer
+
+![image](https://user-images.githubusercontent.com/25869911/166403559-958379c5-37d8-4692-80c4-b11a3702da50.png)
+
+Difference between StringBuffer and StringBuilder
+
+Java provides three classes to represent a sequence of characters: String, StringBuffer, and StringBuilder. The String class is an immutable class whereas StringBuffer and StringBuilder classes are mutable. There are many differences between StringBuffer and StringBuilder. The StringBuilder class is introduced since JDK 1.5.
+
+![image](https://user-images.githubusercontent.com/25869911/166403705-a5747882-4623-4665-b0c4-490991112298.png)
+
+
+How to create Immutable class?
+
+There are many immutable classes like String, Boolean, Byte, Short, Integer, Long, Float, Double etc. In short, all the wrapper classes and String class is immutable. We can also create immutable class by creating final class that have final data members as the example given below:
+
+```java
+public final class Employee  
+{    
+final String pancardNumber;    
+public Employee(String pancardNumber)  
+{    
+this.pancardNumber=pancardNumber;    
+}  
+public String getPancardNumber(){    
+return pancardNumber;    
+}    
+}    
+public class ImmutableDemo  
+{  
+public static void main(String ar[])  
+{  
+Employee e = new Employee("ABC123");  
+String s1 = e.getPancardNumber();  
+System.out.println("Pancard Number: " + s1);  
+}  
+}  
+```
+
+The above class is immutable because:
+
+* The instance variable of the class is final i.e. we cannot change the value of it after creating an object.
+* The class is final so we cannot create the subclass.
+* There is no setter methods i.e. we have no option to change the value of the instance variable.
+
+Java toString() Method
+
+If you want to represent any object as a string, toString() method comes into existence.
+
+The toString() method returns the String representation of the object.
+
+If you print any object, Java compiler internally invokes the toString() method on the object. So overriding the toString() method, returns the desired output, it can be the state of an object etc. depending on your implementation.
+
+Advantage of Java toString() method
+
+By overriding the toString() method of the Object class, we can return values of the object, so we don't need to write much code.
+
+```java
+
+class Student{  
+ int rollno;  
+ String name;  
+ String city;  
+  
+ Student(int rollno, String name, String city){  
+ this.rollno=rollno;  
+ this.name=name;  
+ this.city=city;  
+ }  
+  
+
+Student s1=new Student(101,"Raj","lucknow");  
+Student s2=new Student(102,"Vijay","ghaziabad");  
+
+System.out.println(s1);//compiler writes here s1.toString()   // Student@1fee6fc
+System.out.println(s2);//compiler writes here s2.toString()   // Student@1eed786
+```
+
+As you can see in the above example, printing s1 and s2 prints the hashcode values of the objects but I want to print the values of these objects. Since Java compiler internally calls toString() method, overriding this method will return the specified values. Let's understand it with the example given below:
+
+```java
+class Student{  
+ int rollno;  
+ String name;  
+ String city;  
+  
+ Student(int rollno, String name, String city){  
+ this.rollno=rollno;  
+ this.name=name;  
+ this.city=city;  
+ }
+ 
+ public String toString() { //overriding the toString() method
+     return rollno+" "+name+" "+city;
+ }
+ 
+}
+
+public class MyClass {
+  
+    public static void main(String[] args){  
+      long startTime = System.currentTimeMillis();  
+        Student s1=new Student(101,"Raj","lucknow");  
+        Student s2=new Student(102,"Vijay","ghaziabad");  
+         
+        System.out.println(s1);//compiler writes here s1.toString()  
+        System.out.println(s2);//compiler writes here s2.toString()  
+    }  
+}
+```
+
+StringTokenizer in Java
+
+The java.util.StringTokenizer class allows you to break a String into tokens. It is simple way to break a String. It is a legacy class of Java.
+
+It doesn't provide the facility to differentiate numbers, quoted strings, identifiers etc. like StreamTokenizer class. We will discuss about the StreamTokenizer class in I/O chapter.
+
+In the StringTokenizer class, the delimiters can be provided at the time of creation or one by one to the tokens.
+
+![image](https://user-images.githubusercontent.com/25869911/166404255-8dcbe361-7414-466f-8d32-9d1584e65412.png)
+
+
+
+
+
